@@ -1,0 +1,16 @@
+---
+title: "enrollment"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)
+library(readxl)
+library(janitor)
+enrollment <- read_excel("./class_enrollment_summary_by_term_2.13.20.xlsx", skip=3) %>% clean_names() %>% na.omit()
+```
+
+```{r}
+enrollment %>% arrange(desc(total)) %>% select(course_name, total)
+```
